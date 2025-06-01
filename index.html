@@ -25,14 +25,28 @@
       flex-direction: column; /* Stack status bar and content vertically */
       height: 100vh; /* Make body fill the viewport height */
       width: 100vw; /* Make body fill the viewport width */
-      overflow: hidden; /* Hide body scrollbar to prevent double scroll */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-y: auto; /* Allow vertical scroll for content */
       font-family: 'Open Sans', sans-serif;
       color: #333; /* Default text color */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      /* Remove centering for phone frame, make body fill viewport directly */
+      align-items: flex-start; /* Align content to the start (top-left) */
+      justify-content: flex-start; /* Align content to the start (top-left) */
+
+      /* Mimic mobile device screen characteristics */
+      max-width: 500px; /* Typical max width for a mobile device */
+      margin: 0 auto; /* Center on larger screens */
+      box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Subtle shadow to differentiate from browser */
+      border-radius: 0; /* No rounded corners like a phone */
     }
 
-    /* --- Status Bar --- */
+    /* --- Phone Frame Styles (Removed) --- */
+    /* .phone-frame and .phone-screen styles are removed as per request */
+
+
+    /* --- Original Styles (no changes below this line, just for context) --- */
     .status-bar {
       width: 100%;
       height: var(--status-bar-height);
@@ -48,6 +62,7 @@
       z-index: 20; /* Ensure status bar is always on top */
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       font-family: 'Poppins', sans-serif; /* Clean font for status bar */
+      flex-shrink: 0; /* Status bar shouldn't shrink */
     }
 
     .status-bar span {
@@ -90,7 +105,7 @@
       padding: 1.5em; /* Responsive padding */
       max-width: 600px; /* Max width for the app grid itself */
       /* Ensure grid doesn't overflow vertically, allowing its own scroll */
-      max-height: calc(100vh - var(--status-bar-height) - 1em);
+      max-height: calc(100% - 1em); /* Adjusted from 100vh to 100% of parent .app-grid-container */
       overflow-y: auto; /* Enable scrolling for the app grid */
       -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
       background: rgba(255,255,255,0.8); /* Slightly translucent background */
@@ -692,7 +707,6 @@
         <button id="understandButton">Got It!</button>
       </div>
     </div>
-
   </div>
 
   <audio id="backgroundTouchSound" src="https://assets.mixkit.co/sfx/preview/mixkit-small-group-of-kids-laughing-950.mp3" preload="auto"></audio>
@@ -1033,7 +1047,7 @@
           </div>
         `
       },
-      // --- New Content for Audio-Visual Storyteller ---
+      // New Content for Audio-Visual Storyteller
       storyteller: {
         title: "Audio-Visual Adventures",
         content: [
@@ -1559,7 +1573,7 @@
         storyImage.style.display = 'none'; // Hide image if no URL is found
       }
 
-      playStoryBtn.textContent = '�'; // Reset to play icon
+      playStoryBtn.textContent = '🔊'; // Reset to play icon
       storyAudioPlayer.pause();
       storyAudioPlayer.currentTime = 0;
     }
