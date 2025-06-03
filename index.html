@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Kid Mobile">
+  <meta name="mobile-web-web-app-capable" content="yes">
+  <meta name="theme-color" content="#87CEEB">
+  <meta name="description" content="Engaging mini-apps that teach kids life skills, emotional intelligence, and creativity.">
+  <meta name="keywords" content="life skills for kids, kids learning apps, creativity, emotional intelligence, future skills">
+  <meta name="robots" content="index, follow">
+  <title>Kid Mobile</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' ry='20' fill='%2387CEEB'/%3E%3Ctext x='50%' y='65%' font-size='70' text-anchor='middle' dominant-baseline='middle'%3E%F0%9F%93%B1%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Light Theme Variables */
+    :root {
+      --accent-color: #87CEEB; /* Sky Blue */
+      --body-bg-gradient: linear-gradient(135deg, #B0E0E6, #ADD8E6, #87CEEB); /* Soft sky gradient */
+      --status-bar-bg: #6495ED; /* Cornflower Blue */
+      --status-bar-color: white;
+      --app-bg-default: linear-gradient(135deg, #B0E0E6, #87CEEB); /* Default app gradient - soft blue */
+      --app-name-color: #333333;
+      --app-grid-bg-overlay: rgba(255, 255, 255, 0.4);
+      --app-content-bg: white;
+      --app-title-color: #4682B4; /* Steel Blue */
+      --app-text-color: #555;
+      --app-content-block-bg: #F0F8FF; /* Alice Blue */
+      --app-content-block-border: #87CEEB; /* Sky Blue */
+      --strong-text-color: #4682B4; /* Steel Blue */
+      --drawing-container-bg: #f8f8f8;
+      --drawing-canvas-border: #ddd;
+      --drawing-canvas-bg: white;
+      --drawing-control-bg: #7B68EE; /* Medium Slate Blue */
+      --drawing-control-color: white;
+      --drawing-control-hover: #6A5ACD;
+      --drawing-select-bg: #ADD8E6; /* Light Blue */
+      --drawing-select-border: #6495ED;
+      --drawing-range-track-bg: #ADD8E6;
+      --drawing-range-thumb-bg: #7B68EE;
+      --math-container-bg: #F0F8FF; /* Alice Blue */
+      --math-problem-color: #4682B4; /* Steel Blue */
+      --math-input-border: #87CEEB;
+      --math-input-focus-border: #6495ED;
+      --math-submit-btn-bg: #7B68EE;
+      --math-submit-btn-hover: #6A5ACD;
+      --math-feedback-color: #DC143C; /* Crimson */
+      --math-new-problem-btn-bg: #ADD8E6;
+      --math-new-problem-btn-hover: #9AC0CD;
+      --notepad-bg: white;
+      --notepad-border: #87CEEB;
+      --notepad-focus-border: #6495ED;
+      --goals-container-bg: #F0F8FF;
+      --goals-input-border: #87CEEB;
+      --goals-input-focus-border: #6495ED;
+      --goals-add-btn-bg: #7B68EE;
+      --goals-add-btn-hover: #6A5ACD;
+      --goal-item-bg: white;
+      --goal-item-completed-bg: #e0ffe0; /* Light green */
+      --goal-item-completed-text: #888;
+      --quote-bg: #FFEFD5; /* Light peach */
+      --quote-color: #4682B4;
+      --splash-bg-gradient: linear-gradient(135deg, #ADD8E6, #B0C4DE);
+      --splash-title-color: #4682B4;
+      --splash-text-color: #666;
+      --splash-icon-color: #7B68EE;
+      --status-bar-height: 40px;
+    }
+
+    /* Dark Theme Variables */
+    body.dark-theme {
+      --accent-color: #6A5ACD; /* Slate Blue */
+      --body-bg-gradient: linear-gradient(135deg, #2C3E50, #1A2C3E, #0F1D2F); /* Dark blue/grey gradient */
+      --status-bar-bg: #1A2C3E; /* Darker blue */
+      --status-bar-color: #E0E0E0;
+      --app-bg-default: linear-gradient(135deg, #34495E, #2C3E50); /* Darker app gradient */
+      --app-name-color: #E0E0E0;
+      --app-grid-bg-overlay: rgba(0, 0, 0, 0.6);
+      --app-content-bg: #2C3E50; /* Dark blue/grey */
+      --app-title-color: #ADD8E6; /* Light Blue */
+      --app-text-color: #B0C4DE; /* Light Steel Blue */
+      --app-content-block-bg: #34495E; /* Darker blue/grey */
+      --app-content-block-border: #6A5ACD; /* Slate Blue */
+      --strong-text-color: #ADD8E6; /* Light Blue */
+      --drawing-container-bg: #34495E;
+      --drawing-canvas-border: #4A6070;
+      --drawing-canvas-bg: #1A2C3E;
+      --drawing-control-bg: #ADD8E6; /* Light Blue */
+      --drawing-control-color: #1A2C3E;
+      --drawing-control-hover: #87CEEB;
+      --drawing-select-bg: #4A6070;
+      --drawing-select-border: #ADD8E6;
+      --drawing-range-track-bg: #4A6070;
+      --drawing-range-thumb-bg: #ADD8E6;
+      --math-container-bg: #34495E;
+      --math-problem-color: #ADD8E6;
+      --math-input-border: #6A5ACD;
+      --math-input-focus-border: #ADD8E6;
+      --math-submit-btn-bg: #ADD8E6;
+      --math-submit-btn-hover: #87CEEB;
+      --math-feedback-color: #FF6347; /* Tomato */
+      --math-new-problem-btn-bg: #4A6070;
+      --math-new-problem-btn-hover: #6A5ACD;
+      --notepad-bg: #1A2C3E;
+      --notepad-border: #6A5ACD;
+      --notepad-focus-border: #ADD8E6;
+      --goals-container-bg: #34495E;
+      --goals-input-border: #6A5ACD;
+      --goals-input-focus-border: #ADD8E6;
+      --goals-add-btn-bg: #ADD8E6;
+      --goals-add-btn-hover: #87CEEB;
+      --goal-item-bg: #1A2C3E;
+      --goal-item-completed-bg: #2C4F4F; /* Darker green */
+      --goal-item-completed-text: #A0A0A0;
+      --quote-bg: #4A6070;
+      --quote-color: #ADD8E6;
+      --splash-bg-gradient: linear-gradient(135deg, #1A2C3E, #0F1D2F);
+      --splash-title-color: #ADD8E6;
+      --splash-text-color: #B0C4DE;
+      --splash-icon-color: #ADD8E6;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--body-bg-gradient);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+      overflow-y: auto;
+      font-family: 'Open Sans', sans-serif;
+      color: var(--app-text-color); /* Use variable */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      align-items: flex-start;
+      justify-content: flex-start;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border-radius: 0;
+    }
+
+    .status-bar {
+      width: 100%;
+      height: var(--status-bar-height);
+      background: var(--status-bar-bg); /* Use variable */
+      color: var(--status-bar-color); /* Use variable */
+      font-size: 1.1em;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 1em;
+      box-sizing: border-box;
+      z-index: 20;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-family: 'Poppins', sans-serif;
+      flex-shrink: 0;
+    }
+
+    .status-bar span {
+      margin: 0 0.5em;
+    }
+
+    #emotionMeter {
+      font-size: 1.4em;
+      margin: 0 0.5em;
+      transition: transform 0.3s ease-out;
+      cursor: help;
+    }
+
+    #emotionMeter:active {
+      transform: scale(1.1);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.4em;
+      cursor: pointer;
+      color: var(--status-bar-color);
+      transition: transform 0.2s ease-out;
+      margin-left: auto; /* Push to the right */
+      padding: 0.2em;
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.9);
+    }
+
+    .app-grid-container {
+      flex-grow: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      background-image: url('https://source.unsplash.com/random/1200x800/?anime,fantasy,sky,clouds');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-blend-mode: overlay;
+      background-color: var(--app-grid-bg-overlay); /* Use variable */
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1.2em;
+      padding: 2em;
+      width: 100%;
+      max-width: 600px;
+      max-height: calc(100% - 1em);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background: transparent;
+      border-radius: 2em;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      box-sizing: border-box;
+      transform: translateX(0);
+      opacity: 1;
+      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    }
+
+    .app-grid.hidden {
+      transform: translateX(-20px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .app-grid::-webkit-scrollbar,
+    .app-content-wrapper::-webkit-scrollbar {
+      width: 0.6em;
+    }
+
+    .app-grid::-webkit-scrollbar-track,
+    .app-content-wrapper::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .app-grid::-webkit-scrollbar-thumb,
+    .app-content-wrapper::-webkit-scrollbar-thumb {
+      background-color: var(--status-bar-bg); /* Use variable */
+      border-radius: 0.6em;
+      border: 0.1em solid transparent;
+    }
+
+    @media (max-width: 500px) {
+      .app-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1.2em;
+        grid-gap: 1em;
+      }
+      .app-icon {
+        font-size: 2.2em;
+      }
+      .app-name {
+        font-size: 0.8em;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .app-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1em;
+        grid-gap: 0.8em;
+      }
+      .app-icon {
+        font-size: 1.8em;
+      }
+      .app-name {
+        font-size: 0.75em;
+      }
+    }
+
+    .app {
+      background: var(--app-gradient, var(--app-bg-default)); /* Use variable */
+      border-radius: 1.6em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8em;
+      box-shadow: 0 0.5em 1em rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background 0.3s ease-in-out;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .app:active {
+      transform: scale(0.92);
+      box-shadow: 0 0.2em 0.5em rgba(0,0,0,0.2);
+    }
+
+    .app-icon {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8em;
+      margin-bottom: 0.4em;
+      text-shadow: 0 0.15em 0.3em rgba(0,0,0,0.2);
+      color: #FFF;
+      line-height: 1;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    .app-name {
+      font-size: 0.95em;
+      text-align: center;
+      color: var(--app-name-color); /* Use variable */
+      font-weight: 700;
+      line-height: 1.2;
+      font-family: 'Open Sans', sans-serif;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2), -1px -1px 2px rgba(0,0,0,0.2); /* Changed to darker shadow for better contrast on light text */
+    }
+
+    body.dark-theme .app-name {
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5), -1px -1px 2px rgba(0,0,0,0.5); /* Even darker shadow for dark theme */
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .app .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      animation: ripple-animation 0.6s linear forwards;
+      transform: scale(0);
+      pointer-events: none;
+    }
+
+    @keyframes ripple-animation {
+      from { transform: scale(0); opacity: 1; }
+      to { transform: scale(2.5); opacity: 0; }
+    }
+
+    .screen-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      background: var(--app-content-bg); /* Use variable */
+      z-index: 10;
+      overflow: hidden;
+      transform: translateX(100%);
+      opacity: 0;
+      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+      pointer-events: none;
+    }
+
+    .screen-overlay.visible {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #splashScreen {
+      background: var(--splash-bg-gradient); /* Use variable */
+      text-align: center;
+      cursor: pointer;
+      z-index: 30;
+      transform: translateY(0);
+      opacity: 1;
+      padding: 0;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out, scale 0.5s ease-out;
+    }
+
+    #splashScreen.hidden {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+      pointer-events: none;
+    }
+
+    #splashScreen .splash-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      padding: 1.5em;
+      box-sizing: border-box;
+    }
+
+    #splashScreen h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.8em;
+      color: var(--splash-title-color); /* Use variable */
+      margin: 0;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+    }
+
+    #splashScreen p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.4em;
+      color: var(--splash-text-color); /* Use variable */
+      margin-top: 1em;
+      font-weight: 600;
+    }
+
+    #splashScreen .splash-mobile-icon {
+      font-size: 9em;
+      margin-top: 2.5em;
+      color: var(--splash-icon-color); /* Use variable */
+      text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+      animation: float 2.5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-18px); }
+      100% { transform: translateY(0px); }
+    }
+
+    #appContent {
+      background: var(--app-content-bg); /* Use variable */
+      z-index: 25;
+      box-shadow: none;
+    }
+
+    .app-content-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 1.8em;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #appContent h2 {
+      font-size: 2em;
+      margin-top: 1.2em;
+      margin-bottom: 1.5em;
+      color: var(--app-title-color); /* Use variable */
+      font-weight: 700;
+      font-family: 'Fredoka One', cursive;
+      text-align: center;
+      width: 100%;
+    }
+
+    #appContent p {
+      font-size: 1.1em;
+      line-height: 1.7;
+      color: var(--app-text-color); /* Use variable */
+      margin-bottom: 1em;
+      text-align: left;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .app-content-block {
+      background: var(--app-content-block-bg); /* Use variable */
+      border-left: 0.5em solid var(--app-content-block-border); /* Use variable */
+      padding: 1.2em;
+      margin-bottom: 1.2em;
+      border-radius: 1em;
+      text-align: left;
+      box-shadow: 0 0.2em 0.5em rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      box-sizing: border-box;
+    }
+
+    .app-content-block strong {
+      color: var(--strong-text-color); /* Use variable */
+    }
+
+    .app-content-block ul {
+      list-style-type: '👉 ';
+      padding-left: 1.8em;
+      margin-top: 0.8em;
+    }
+
+    .app-content-block li {
+      margin-bottom: 0.6em;
+      padding-left: 0.3em;
+    }
+
+    /* Video Embed Styles */
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+        background: #000;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        border-radius: 0.8em;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Drawing App Styles */
+    .drawing-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: var(--drawing-container-bg); /* Use variable */
+      border-radius: 1em;
+      padding: 1em;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+      box-sizing: border-box;
+    }
+
+    #drawingCanvas {
+      background-color: var(--drawing-canvas-bg); /* Use variable */
+      border: 2px solid var(--drawing-canvas-border); /* Use variable */
+      border-radius: 0.8em;
+      touch-action: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 480px;
+      height: 480px;
+      flex-shrink: 0;
+    }
+
+    .drawing-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      margin-top: 1.5em;
+      justify-content: center;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .drawing-controls button,
+    .drawing-controls select,
+    .drawing-controls input[type="range"] {
+      background: var(--drawing-control-bg); /* Use variable */
+      color: var(--drawing-control-color); /* Use variable */
+      padding: 0.8em 1.2em;
+      border: none;
+      border-radius: 0.8em;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      text-align: center;
+    }
+
+    .drawing-controls button:active,
+    .drawing-controls select:active,
+    .drawing-controls input[type="range"]:active {
+      transform: scale(0.95);
+      background-color: var(--drawing-control-hover); /* Use variable */
+    }
+
+    .drawing-controls select {
+        background-color: var(--drawing-select-bg); /* Use variable */
+        color: var(--app-name-color); /* Use variable */
+        border: 1px solid var(--drawing-select-border); /* Use variable */
+        padding-right: 2.5em;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236495ED%22%20d%3D%22M287%2C197.969c-3.627%2C3.628-7.986%2C5.446-12.723%2C5.446H18.123c-4.737%2C0-9.096-1.818-12.723-5.446c-7.254-7.254-7.254-19.006%2C0-26.26l126.837-126.836c3.628-3.628%2C7.987-5.446%2C12.724-5.446c4.737%2C0%2C9.096%2C1.818%2C12.723%2C5.446l126.837%2C126.836C294.254%2C178.963%2C294.254%2C190.715%2C287%2C197.969z%22%2F%3E%3C%2Fsvg%3E');
+        background-repeat: no-repeat;
+        background-position: right 0.8em center;
+        background-size: 1.2em;
+    }
+
+    .drawing-controls input[type="range"] {
+        background: var(--drawing-range-track-bg); /* Use variable */
+        cursor: ew-resize;
+        flex-grow: 1;
+        max-width: 150px;
+        height: auto;
+        padding: 0.5em 0.8em;
+    }
+
+    .drawing-controls input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--drawing-range-thumb-bg); /* Use variable */
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .drawing-controls input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--drawing-range-thumb-bg); /* Use variable */
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .drawing-controls label {
+        color: var(--app-text-color); /* Use variable */
+        font-size: 0.9em;
+        margin-right: 0.5em;
+        display: flex;
+        align-items: center;
+    }
+
+
+    /* Brain Solver Styles */
+    .math-game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: var(--math-container-bg); /* Use variable */
+      border-radius: 1em;
+      padding: 1.5em;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.08);
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    #mathProblem {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.5em;
+      color: var(--math-problem-color); /* Use variable */
+      margin-bottom: 0.8em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .math-input-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      margin-bottom: 1.5em;
+      width: 100%;
+      max-width: 300px;
+      justify-content: center;
+    }
+
+    #mathAnswer {
+      padding: 0.8em 1em;
+      font-size: 1.8em;
+      border: 3px solid var(--math-input-border); /* Use variable */
+      border-radius: 0.8em;
+      width: 100px;
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+      background-color: var(--drawing-canvas-bg); /* Use variable for input background */
+      color: var(--app-name-color); /* Use variable for input text color */
+    }
+
+    #mathAnswer:focus {
+      outline: none;
+      border-color: var(--math-input-focus-border); /* Use variable */
+    }
+
+    #submitAnswerBtn {
+      background: var(--math-submit-btn-bg); /* Use variable */
+      color: var(--drawing-control-color); /* Use variable */
+      padding: 0.8em 1.5em;
+      border: none;
+      border-radius: 0.8em;
+      font-size: 1.4em;
+      cursor: pointer;
+      transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    #submitAnswerBtn:active {
+      transform: scale(0.95);
+      background-color: var(--math-submit-btn-hover); /* Use variable */
+    }
+
+    #mathFeedback {
+      font-size: 1.5em;
+      font-weight: 700;
+      margin-top: 1em;
+      color: var(--math-feedback-color); /* Use variable */
+      height: 1.5em;
+    }
+
+    #newProblemBtn {
+      background: var(--math-new-problem-btn-bg); /* Use variable */
+      color: var(--app-name-color); /* Use variable */
+      padding: 0.8em 1.5em;
+      border: none;
+      border-radius: 0.8em;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+      margin-top: 1.5em;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+
+    #newProblemBtn:active {
+      transform: scale(0.95);
+      background-color: var(--math-new-problem-btn-hover); /* Use variable */
+    }
+
+    /* Daily Learn Notepad Styles */
+    .notepad-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      height: 100%;
+      background-color: var(--notepad-bg); /* Use variable */
+      border-radius: 1em;
+      padding: 1.5em;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    #dailyLearnNotes {
+      width: 100%;
+      height: 70%;
+      padding: 1em;
+      border: 2px solid var(--notepad-border); /* Use variable */
+      border-radius: 0.8em;
+      font-size: 1.1em;
+      font-family: 'Open Sans', sans-serif;
+      resize: vertical;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 1em;
+      background-color: var(--drawing-canvas-bg); /* Use variable for textarea background */
+      color: var(--app-name-color); /* Use variable for textarea text color */
+    }
+
+    #dailyLearnNotes:focus {
+      outline: none;
+      border-color: var(--notepad-focus-border); /* Use variable */
+    }
+
+    /* Set Goals App Styles */
+    .goals-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      background-color: var(--goals-container-bg); /* Use variable */
+      border-radius: 1.em;
+      padding: 1.5em;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+      box-sizing: border-box;
+    }
+
+    .goals-input-group {
+      display: flex;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 1.5em;
+      gap: 0.5em;
+    }
+
+    #newGoalInput {
+      flex-grow: 1;
+      padding: 0.8em 1em;
+      font-size: 1.1em;
+      border: 2px solid var(--goals-input-border); /* Use variable */
+      border-radius: 0.8em;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--drawing-canvas-bg); /* Use variable for input background */
+      color: var(--app-name-color); /* Use variable for input text color */
+    }
+
+    #newGoalInput:focus {
+      outline: none;
+      border-color: var(--goals-input-focus-border); /* Use variable */
+    }
+
+    #addGoalBtn {
+      background: var(--goals-add-btn-bg); /* Use variable */
+      color: var(--drawing-control-color); /* Use variable */
+      padding: 0.8em 1.2em;
+      border: none;
+      border-radius: 0.8em;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+
+    #addGoalBtn:active {
+      transform: scale(0.95);
+      background-color: var(--goals-add-btn-hover); /* Use variable */
+    }
+
+    #goalsList {
+      width: 100%;
+      max-width: 400px;
+      overflow-y: auto;
+      flex-grow: 1;
+      padding-right: 0.5em;
+    }
+
+    .goal-item {
+      display: flex;
+      align-items: center;
+      background: var(--goal-item-bg); /* Use variable */
+      padding: 0.8em 1em;
+      border-radius: 0.8em;
+      margin-bottom: 0.6em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      transition: background-color 0.3s ease;
+    }
+
+    .goal-item input[type="checkbox"] {
+      margin-right: 0.8em;
+      min-width: 20px;
+      min-height: 20px;
+      cursor: pointer;
+      accent-color: var(--status-bar-bg); /* Use variable */
+    }
+
+    .goal-item span {
+      flex-grow: 1;
+      font-size: 1.1em;
+      color: var(--app-name-color); /* Use variable */
+      word-wrap: break-word;
+      transition: text-decoration 0.3s ease, color 0.3s ease;
+    }
+
+    .goal-item.completed {
+      background-color: var(--goal-item-completed-bg); /* Use variable */
+    }
+
+    .goal-item.completed span {
+      text-decoration: line-through;
+      color: var(--goal-item-completed-text); /* Use variable */
+    }
+
+    /* Styles for dynamic quote in Always Smile */
+    #dynamicQuote {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8em;
+      color: var(--quote-color); /* Use variable */
+      text-align: center;
+      margin-top: 1.5em;
+      margin-bottom: 2em;
+      padding: 0.8em;
+      background: var(--quote-bg); /* Use variable */
+      border-radius: 1em;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 450px;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 150px;
+    }
+
+    /* Custom Alert/Message Box Styles */
+    .message-box-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .message-box-overlay.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .message-box {
+        background: var(--app-content-bg);
+        padding: 2em;
+        border-radius: 1em;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 300px;
+        width: 90%;
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .message-box-overlay.visible .message-box {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .message-box p {
+        margin-bottom: 1.5em;
+        font-size: 1.1em;
+        color: var(--app-text-color);
+    }
+
+    .message-box button {
+        background: var(--goals-add-btn-bg);
+        color: var(--drawing-control-color);
+        padding: 0.8em 1.5em;
+        border: none;
+        border-radius: 0.8em;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .message-box button:active {
+        transform: scale(0.95);
+        background-color: var(--goals-add-btn-hover);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="status-bar">
+    <span id="emotionMeter" title="Your Current Mood">😊</span>
+    <span id="currentTimeDate"></span>
+    <button id="themeToggle" class="theme-toggle">💡</button> </div>
+
+  <div class="app-grid-container">
+    <div id="splashScreen" class="screen-overlay visible">
+      <div class="splash-content">
+        <h1>Kid Mobile!</h1>
+        <p>Tap to start your amazing journey!</p>
+        <div class="splash-mobile-icon">🚀</div>
+      </div>
+    </div>
+
+    <div class="app-grid" id="appGrid">
+      <div class="app" data-app-key="goodGuidance" style="--app-gradient: linear-gradient(135deg, #B0E0E6, #87CEEB);">
+        <div class="app-icon">💡</div>
+        <div class="app-name">Good Guidance</div>
+      </div>
+      <div class="app" data-app-key="responsibleFamily" style="--app-gradient: linear-gradient(135deg, #FFB6C1, #FF69B4);">
+        <div class="app-icon">💖</div>
+        <div class="app-name">Family Care</div>
+      </div>
+      <div class="app" data-app-key="goodCharacter" style="--app-gradient: linear-gradient(135deg, #98FB98, #3CB371);">
+        <div class="app-icon">🌟</div>
+        <div class="app-name">Good Character</div>
+      </div>
+      <div class="app" data-app-key="humanity" style="--app-gradient: linear-gradient(135deg, #E6E6FA, #DDA0DD);">
+        <div class="app-icon">😊</div>
+        <div class="app-name">Humanity</div>
+      </div>
+      <div class="app" data-app-key="learningDaily" style="--app-gradient: linear-gradient(135deg, #FFDAB9, #FFA07A);">
+        <div class="app-icon">🎯</div>
+        <div class="app-name">Daily Learn</div>
+      </div>
+      <div class="app" data-app-key="brainSolvingProblems" style="--app-gradient: linear-gradient(135deg, #B0E0E6, #6495ED);">
+        <div class="app-icon">🧩</div>
+        <div class="app-name">Brain Solver</div>
+      </div>
+      <div class="app" data-app-key="responsibleCitizen" style="--app-gradient: linear-gradient(135deg, #ADD8E6, #4682B4);">
+        <div class="app-icon">🌍</div>
+        <div class="app-name">Good Citizen</div>
+      </div>
+      <div class="app" data-app-key="personalityDevelopment" style="--app-gradient: linear-gradient(135deg, #F0E68C, #DAA520);">
+        <div class="app-icon">🌱</div>
+        <div class="app-name">Grow Strong</div>
+      </div>
+      <div class="app" data-app-key="alwaysSmile" style="--app-gradient: linear-gradient(135deg, #FFEFD5, #F4A460);">
+        <div class="app-icon">😁</div>
+        <div class="app-name">Always Smile</div>
+      </div>
+      <div class="app" data-app-key="drawingApp" style="--app-gradient: linear-gradient(135deg, #FFFACD, #F0E68C);">
+        <div class="app-icon">🎨</div>
+        <div class="app-name">Art & Imagine</div>
+      </div>
+      <div class="app" data-app-key="respect" style="--app-gradient: linear-gradient(135deg, #D8BFD8, #BA55D3);">
+        <div class="app-icon">🤝</div>
+        <div class="app-name">Respect</div>
+      </div>
+      <div class="app" data-app-key="setGoals" style="--app-gradient: linear-gradient(135deg, #C7EDCC, #85E085);">
+        <div class="app-icon">✅</div>
+        <div class="app-name">Set Goals</div>
+      </div>
+    </div>
+
+    <div id="appContent" class="screen-overlay">
+      <div class="app-content-wrapper">
+        <h2 id="appTitle"></h2>
+        <div id="appBody"></div>
+      </div>
+    </div>
+
+    </div>
+
+  <div id="messageBoxOverlay" class="message-box-overlay">
+      <div class="message-box">
+          <p id="messageBoxText"></p>
+          <button id="messageBoxCloseBtn">OK</button>
+      </div>
+  </div>
+
+  <audio id="backgroundTouchSound" src="https://assets.mixkit.co/sfx/preview/mixkit-small-group-of-kids-laughing-950.mp3" preload="auto"></audio>
+  <script>
+    const GENERIC_SUCCESS_SOUND = "https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-bells-1596.mp3";
+
+    const appData = {
+      goodGuidance: {
+        title: "Good Guidance",
+        body: `
+          <div class="app-content-block">
+            <p><strong>Think Before You Act:</strong> It's like building with blocks! First, imagine what you want to build, then pick the right blocks carefully. If you rush, your tower might tumble! Stop, think, and then choose your actions.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/uhy45RM9844?si=09i9XDWmsPz9fQti" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Learn from Mistakes:</strong> Did you draw a funny-looking cat instead of a perfect one? That's okay! Every time you try, you learn. Mistakes are like secret teachers that help you get better and stronger. So, try differently next time!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/sUSRsoE_g9Q?si=SKbfYCu5oraChnB2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Ask for Help:</strong> When you're stuck on a puzzle, do you just stare at it? No! You ask a grown-up or a friend for a hint. Life's choices can be like puzzles too. When a choice is hard, talk to a trusted adult. They can help you find the best way!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/pL_OwrsXmNA?si=_GvPHzrtE_-1koQT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Be Responsible:</strong> If you borrow a toy, you return it, right? That's being responsible! Good guidance means taking care of your things, doing your chores, and being accountable for your actions, whether big or small. It makes everyone happy!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/LST7lf0QKdc?si=D9s0ImaJnlA-N8ON" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>No Cheating:</strong> Playing a game is fun, but cheating isn't fair. Imagine if someone cheated in your game! It doesn't feel good. Always be fair and honest in games and school. It builds trust and makes winning (or even losing) more meaningful and fun for everyone!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/0VWK4plxkjk?si=78y6T3X-q-ZzfT4P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+        `
+      },
+      responsibleFamily: {
+        title: "Family Care",
+        body: `
+          <div class="app-content-block">
+            <p><strong>Listen & Share:</strong> Your family loves to hear about your day! And they have stories too. Listen to them like you listen to your favorite song, and share your adventures. Family time is like a cozy blanket – warm and comforting!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/K2-Mha47GVs?si=ZYuoYXG2c9yoPNB1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Help Around the Home:</strong> Ever seen a superhero? You can be one at home! Helping with chores like tidying up your toys, setting the table, or putting away groceries makes the whole family team stronger. Teamwork makes the dream work!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/drCMd7Jr2Sg?si=2AEp_GoQUNYnzdab" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Show Appreciation:</strong> Did someone pack your favorite lunch? Or read you a bedtime story? A simple "thank you" or a big hug can make someone's day sparkle. Show your family you care with words and actions every day!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Vm5NV6_enU8?si=l6E9DU3nWmC7yEqX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Solve Problems Together:</strong> Sometimes, even family members might disagree. It's like two pieces of a puzzle that don't quite fit! Instead of getting frustrated, talk it out calmly, share your feelings, and find a solution together. Family is about solving things as a team!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Sd9MZdB1ItU?si=3UREIeUHDuXReVzk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Spend Quality Time:</strong> What's your favorite thing to do with your family? Playing games, reading, or just chatting? Make sure to spend special time together. These moments build strong, happy family bonds!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/qeIbtIcL11Q?si=FuajOF5mo_twIGyU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+        `
+      },
+      goodCharacter: {
+        title: "Good Character",
+        body: `
+          <div class="app-content-block">
+            <p><strong>You are Unique:</strong> Imagine a garden with all different kinds of flowers. Each one is special and beautiful! You are just like that – there's only one you! Embrace your special talents, ideas, and personality. Celebrate what makes you, YOU!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/aHIyzM2ALes?si=0oYgrnXQGVzCSh1C" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Trust Your Gut:</strong> Have you ever had a feeling deep inside that told you if something was right or wrong? That's your "gut feeling" or your intuition! Listen to your inner voice. It often knows what's best for you and helps you make smart choices!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/domCDwp5u3I?si=i9e-C-C3o1uCZh_6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Shine Bright:</strong> Don't hide your light under a bushel! If you're good at something, or have a kind heart, let it show. Don't be afraid to be who you are, even if it's different from others. Your uniqueness is your superpower and makes you shine brightly!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/b2sjCyAsFbM?si=1KZaSXdlD9R69Hj7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Grow Every Day:</strong> A tiny seed grows into a big tree, right? Just like that, you are always growing! Being yourself also means always trying to be a better version of yourself. Learn new things, try new challenges, and grow in kindness and wisdom every single day.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/7IhpL9Plk48?si=BAflFIaBXXxFPZHN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Be Honest:</strong> Telling the truth, even when it's hard, shows you have a strong character. It builds trust with your friends and family. Honesty is like a strong foundation for a house – it makes everything else stable!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/SczhbM-nno0?si=JbL42wa9E65N5B5N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+        `
+      },
+      humanity: {
+        title: "Humanity & Kindness",
+        body: `
+          <div class="app-content-block">
+            <p><strong>Smiling Spreads Joy:</strong> Did you know a smile is contagious? If you smile at someone, they often smile back! A simple smile can brighten someone's day, make them feel noticed, and spread happiness like sunshine. Share it often!</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/aW9EX_FkHM4?si=i9wIge-rtGXr9uMC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Help a Friend:</strong> If you see someone sad, dropped their books, or needs a helping hand, what do you do? Offer support! Big hearts make a big difference. Helping others makes the world a kinder place, and it feels good to know you made someone's day better.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Q35krsQoCog?si=eEhz5Qzhc9rzyVir" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Share Your Kindness:</strong> Kindness is like a special gift you can give away without losing any yourself! Share a snack, a toy, or a kind word. Sharing shows you care and can turn a frown upside down. It's about being generous with your heart.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/WXudxua0IKo?si=l18vMLDU9GdFW_mQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Forgive and Move On:</strong> Sometimes, friends or family might accidentally hurt your feelings. It happens! If someone makes a mistake, try to forgive them. Holding onto anger is like carrying a heavy rock. Letting go and forgiving helps everyone feel better and keeps friendships strong.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/-aEUjlxOK-Y?si=D543aZKj4zj-4Uvw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Empathy:</strong> Try to imagine how others feel. If your friend lost their favorite toy, you might feel sad for them, even if it didn't happen to you. That's empathy! Understanding others' feelings helps you be a better friend and a more caring person.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/7mnLfqBKhoc?si=6qeWsrcU0FzcGr1h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+        `
+      },
+      learningDaily: {
+        title: "Daily Learn Notepad",
+        body: `
+          <div class="notepad-container">
+            <p><strong>What did you learn today?</strong> Write your thoughts and discoveries here! They will be saved.</p>
+            <textarea id="dailyLearnNotes" placeholder="Start typing what you learned..."></textarea>
+            <p style="font-size: 0.9em; color: var(--app-text-color);">Your notes are saved automatically!</p>
+          </div>
+        `
+      },
+      brainSolvingProblems: {
+        title: "Brain Solver",
+        body: `
+          <div class="math-game-container">
+            <p><strong>Train Your Brain!</strong> Solve these fun math problems to make your brain super strong! You can do it!</p>
+            <div id="mathProblem"></div>
+            <div class="math-input-group">
+              <input type="number" id="mathAnswer" placeholder="Your Answer">
+              <button id="submitAnswerBtn">Check</button>
+            </div>
+            <div id="mathFeedback"></div>
+            <button id="newProblemBtn">New Problem</button>
+          </div>
+        `
+      },
+      responsibleCitizen: {
+        title: "Good Citizen",
+        body: `
+          <div class="app-content-block">
+            <p><strong>Learn About Cultures:</strong> Imagine a giant book with stories from every corner of the world! The world is full of amazing people, with different foods, clothes, songs, and traditions. Explore and learn about them – it makes the world more colorful and interesting!</p>
+            <ul>
+              <li><strong>Example:</strong> Learn a few words in another language, or try food from a different country!</li>
+            </ul>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Care for Our Planet:</strong> Our Earth is like a big, beautiful home for everyone. We need to take care of it! Recycle your plastics and papers, save water by turning off the tap, and always put your trash in a bin. Every little bit helps keep our planet healthy and happy for all of us!</p>
+            <ul>
+              <li><strong>Example:</strong> Turn off the lights when you leave a room, or help sort recycling at home.</li>
+            </ul>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Help Those in Need:</strong> Think about ways to help kids and families around the world who might not have as much as you. You can share your old toys, help collect food for others, or even just be kind to everyone you meet. Small acts of kindness make a big difference!</p>
+            <ul>
+              <li><strong>Example:</strong> Donate old toys or clothes that you no longer use, or participate in a school food drive.</li>
+            </ul>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Respect Everyone:</strong> No matter where people come from, what language they speak, or what they look like, treat everyone with kindness and respect. We are all part of the big human family! Listen to different ideas and learn from each other.</p>
+            <ul>
+              <li><strong>Example:</strong> Listen patiently when someone is speaking, even if you don't agree with them.</li>
+            </ul>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Follow Rules:</strong> Rules help us stay safe and keep things fair, whether it's in school, at the park, or crossing the street. Following rules shows you are a responsible and respectful citizen in your community!</p>
+            <ul>
+              <li><strong>Example:</strong> Always wait for the "walk" signal before crossing the street, or follow the rules in a game.</li>
+            </ul>
+          </div>
+        `
+      },
+      personalityDevelopment: {
+        title: "Grow Strong",
+        body: `
+          <div class="app-content-block">
+            <p><strong>Physical Strength (For Boys & Girls):</strong></p>
+            <ul>
+              <li><strong>Play Active Games:</strong> Run, jump, and play outside! Games like tag, hide-and-seek, or sports are great ways to make your body strong.</li>
+              <li><strong>Eat Healthy Foods:</strong> Think of fruits, vegetables, and good proteins as fuel for your body. They give you energy to play and grow!</li>
+              <li><strong>Get Enough Sleep:</strong> Your body grows and repairs itself when you sleep. Make sure you get enough rest every night to feel strong and ready for the day.</li>
+              <li><strong>Stay Hydrated:</strong> Drink plenty of water throughout the day. It keeps your body working well and helps you feel energized.</li>
+            </ul>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Mental Strength (For Boys & Girls):</strong></p>
+            <ul>
+              <li><strong>Read Books:</strong> Reading helps your brain grow smarter and learn new things. It's like exercise for your mind!</li>
+              <li><strong>Learn New Skills:</strong> Try learning to draw, play an instrument, or solve puzzles. Challenging your brain makes it stronger.</li>
+              <li><strong>Talk About Your Feelings:</strong> It's brave to share how you feel, whether happy, sad, or frustrated. Talking to a trusted grown-up or friend helps you understand your emotions and feel better.</li>
+              <li><strong>Practice Positive Thinking:</strong> When things are tough, try to find something good in the situation. Believe in yourself and say "I can do it!"</li>
+              <li><strong>Be Patient:</strong> Learning new things takes time and practice. Don't get discouraged if something is hard at first. Keep trying, and you'll get there!</li>
+            </ul>
+          </div>
+        `
+      },
+      alwaysSmile: {
+        title: "Always Smile!",
+        body: `
+          <div id="dynamicQuote" class="app-content-block"></div>
+        `
+      },
+      drawingApp: {
+        title: "Art & Imagine",
+        body: `
+          <div class="drawing-container">
+            <canvas id="drawingCanvas"></canvas>
+            <div class="drawing-controls">
+              <select id="colorSelect">
+                <option value="black">Black</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="yellow">Yellow</option>
+                <option value="purple">Purple</option>
+                <option value="orange">Orange</option>
+                <option value="pink">Pink</option>
+                <option value="brown">Brown</option>
+                <option value="gray">Gray</option>
+                <option value="teal">Teal</option>
+                <option value="maroon">Maroon</option>
+                <option value="navy">Navy</option>
+                <option value="lime">Lime</option>
+                <option value="white">Eraser (White)</option>
+              </select>
+              <label for="pencilSize">Size:</label>
+              <input type="range" id="pencilSize" min="1" max="20" value="5">
+              <button id="clearCanvas">Clear</button>
+            </div>
+          </div>
+        `
+      },
+      respect: {
+        title: "Respect",
+        body: `
+          <div class="app-content-block">
+            <p><strong>Respect for Everyone, Always:</strong> Respect means treating everyone with kindness, understanding, and fairness, no matter who they are. It's about valuing their feelings, ideas, and differences.</p>
+          </div>
+          <div class="app-content-block">
+            <p><strong>From Young to Old:</strong></p>
+            <ul>
+              <li><strong>Kids:</strong> Listen to their ideas, include them in games, and be patient if they're learning something new.</li>
+              <li><strong>Teenagers:</strong> Understand their growing independence, listen to their perspectives, and respect their personal space.</li>
+              <li><strong>Adults:</strong> Listen to their advice, appreciate their experience, and offer help when they need it.</li>
+              <li><strong>Elders:</strong> Show them extra care and patience, listen to their stories, and value their wisdom.</li>
+            </ul>
+          </div>
+          <div class="app-content-block">
+            <p><strong>From All Walks of Life:</strong></p>
+            <ul>
+              <li><strong>Rich to Poor:</strong> Treat everyone with the same dignity and kindness, regardless of how much money they have or where they live. Everyone deserves respect.</li>
+              <li><strong>Different Backgrounds:</strong> Celebrate what makes people unique! Learn about different cultures, traditions, and ways of life. Respecting differences makes the world a richer place.</li>
+            </ul>
+          </div>
+          <div class="app-content-block">
+            <p><strong>Even When It's Hard (Enemies):</strong></p>
+            <ul>
+              <li><strong>Understanding True Colors:</strong> Sometimes people show their true selves, even when they're not being kind. By staying respectful, you learn more about them and can choose how to react in a way that shows your own good character.</li>
+              <li><strong>Don't Lower Yourself:</strong> If someone is unkind to you, don't be unkind back. By staying respectful, you show that you are a bigger person and that their negativity doesn't control your actions.</li>
+              <li><strong>Set Boundaries:</strong> Respecting an "enemy" doesn't mean letting them hurt you. It means treating them fairly, but also protecting yourself by setting clear boundaries and walking away if needed.</li>
+            </ul>
+          </div>
+        `
+      },
+      setGoals: {
+        title: "Set Goals",
+        body: `
+          <div class="goals-container">
+            <p><strong>What do you want to achieve?</strong> Write down your goals here!</p>
+            <div class="goals-input-group">
+              <input type="text" id="newGoalInput" placeholder="Write your new goal here...">
+              <button id="addGoalBtn">Add Goal</button>
+            </div>
+            <div id="goalsList"></div>
+          </div>
+        `
+      }
+    };
+
+    const happyQuotes = [
+      "You are doing great!",
+      "Your smile makes the world brighter!",
+      "You are so kind and thoughtful!",
+      "You have such good ideas!",
+      "You are amazing, just the way you are!",
+      "Your eyes sparkle with joy!",
+      "You are a wonderful friend!",
+      "You can do anything you set your mind to!",
+      "You bring so much happiness to others!",
+      "You are stronger than you think!",
+      "You are loved!",
+      "Your laugh is contagious!",
+      "You are a superstar!",
+      "You are clever and smart!",
+      "You light up every room!"
+    ];
+
+    const backgroundTouchSound = document.getElementById('backgroundTouchSound');
+    const splashScreen = document.getElementById('splashScreen');
+    const appGrid = document.getElementById('appGrid');
+    const appContent = document.getElementById('appContent');
+    const appIcons = document.querySelectorAll('.app');
+    const currentTimeDateSpan = document.getElementById('currentTimeDate');
+    const emotionMeter = document.getElementById('emotionMeter');
+    const themeToggle = document.getElementById('themeToggle');
+    const messageBoxOverlay = document.getElementById('messageBoxOverlay');
+    const messageBoxText = document.getElementById('messageBoxText');
+    const messageBoxCloseBtn = document.getElementById('messageBoxCloseBtn');
+
+    // Drawing App Variables
+    let canvas, ctx, isDrawing = false, lastX = 0, lastY = 0;
+    let currentColor = 'black';
+    let currentLineWidth = 5;
+
+    // Brain Solver Variables
+    let currentProblem = {};
+
+    // Removed tap timing variables as they are no longer needed
+    // let tapTimeout;
+    // let touchStartTime;
+    // const APP_OPEN_TAP_DURATION = 2000; 
+
+    // --- Utility Functions ---
+
+    function showMessageBox(message) {
+        messageBoxText.textContent = message;
+        messageBoxOverlay.classList.add('visible');
+    }
+
+    function hideMessageBox() {
+        messageBoxOverlay.classList.remove('visible');
+    }
+
+    messageBoxCloseBtn.addEventListener('click', hideMessageBox);
+
+    function updateTimeAndDate() {
+      const now = new Date();
+      const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+      const dateOptions = { month: 'short', day: 'numeric' };
+      const timeString = now.toLocaleTimeString('en-US', timeOptions);
+      const dateString = now.toLocaleDateString('en-US', dateOptions);
+      currentTimeDateSpan.textContent = `${timeString} ${dateString}`;
+    }
+
+    function updateEmotionMeter(emotion = 'happy') {
+      let emoji = '😊';
+      if (emotion === 'thoughtful') emoji = '🤔';
+      else if (emotion === 'calm') emoji = '😌';
+      else if (emotion === 'excited') emoji = '🤩';
+      else if (emotion === 'neutral') emoji = '🙂';
+
+      emotionMeter.textContent = emoji;
+    }
+
+    updateTimeAndDate();
+    updateEmotionMeter('happy');
+    setInterval(updateTimeAndDate, 1000);
+
+    // --- Theme Toggle Logic ---
+    function applyTheme(theme) {
+      document.body.classList.toggle('dark-theme', theme === 'dark');
+      themeToggle.textContent = theme === 'dark' ? '🌙' : '💡';
+      localStorage.setItem('theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      applyTheme(newTheme);
+    });
+
+    // --- App Navigation Logic ---
+
+    splashScreen.addEventListener('click', () => {
+      backgroundTouchSound.currentTime = 0;
+      backgroundTouchSound.play().catch(e => console.log("Audio play prevented:", e));
+      splashScreen.classList.add('hidden');
+      setTimeout(() => {
+        splashScreen.style.display = 'none';
+      }, 500);
+      appGrid.style.display = 'grid';
+      appGrid.classList.remove('hidden');
+      updateEmotionMeter('excited');
+      history.pushState({ screen: 'grid' }, '', '#grid');
+    });
+
+    appIcons.forEach(app => {
+      // Removed pressTimer, touchStartTime, and APP_OPEN_TAP_DURATION as they are no longer needed.
+      // Now, a simple click/tap will open the app immediately.
+
+      app.addEventListener('click', (e) => { // Using 'click' for both mouse and touch taps
+        const appKey = app.dataset.appKey;
+        openApp(appKey);
+
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        const rect = app.getBoundingClientRect();
+        // Declare 'size' before using it
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        app.appendChild(ripple);
+
+        ripple.addEventListener('animationend', () => {
+          ripple.remove();
+        });
+      });
+
+      // Removed mousedown, mouseup, mouseleave, touchstart, touchend, touchcancel
+      // as 'click' event handles both mouse and touch for instant opening.
+    });
+
+    function openApp(key) {
+      const app = appData[key];
+      if (!app) {
+        console.error("App data not found for key:", key);
+        return;
+      }
+
+      document.getElementById("appTitle").innerText = app.title;
+      document.getElementById("appBody").innerHTML = app.body;
+
+      appGrid.classList.add('hidden');
+      appContent.style.display = 'flex';
+      setTimeout(() => {
+        appContent.classList.add('visible');
+        document.querySelector('.app-content-wrapper').scrollTop = 0;
+        backgroundTouchSound.currentTime = 0;
+        backgroundTouchSound.play().catch(e => console.log("Audio play prevented:", e));
+        updateEmotionMeter('happy');
+
+        history.pushState({ screen: 'app', appKey: key }, '', `#${key}`);
+
+        if (key === 'drawingApp') {
+          initializeDrawingApp();
+        } else if (key === 'brainSolvingProblems') {
+          initializeBrainSolver();
+        } else if (key === 'learningDaily') {
+          initializeDailyLearnNotepad();
+        } else if (key === 'setGoals') {
+          initializeSetGoals();
+        } else if (key === 'alwaysSmile') {
+          initializeAlwaysSmile();
+        }
+      }, 0);
+    }
+
+    function reallyCloseApp() {
+      appContent.classList.remove('visible');
+      setTimeout(() => {
+        appContent.style.display = 'none';
+        appGrid.style.display = 'grid';
+        appGrid.classList.remove('hidden');
+        backgroundTouchSound.currentTime = 0;
+        backgroundTouchSound.play().catch(e => console.log("Audio play prevented:", e));
+        updateEmotionMeter('calm');
+      }, 400);
+    }
+
+    window.addEventListener('popstate', (event) => {
+        if (appContent.classList.contains('visible')) {
+            reallyCloseApp();
+        } else if (event.state && event.state.screen === 'grid') {
+            console.log("On app grid, allowing browser back action (to exit PWA or go to previous page).");
+        } else {
+            if (!event.state) {
+                history.pushState({ screen: 'grid' }, '', '#grid');
+            }
+        }
+    });
+
+    window.onload = () => {
+      if (history.state === null || history.state.screen === undefined) {
+        history.replaceState({ screen: 'grid' }, '', '#grid');
+      }
+    };
+
+
+    // --- Drawing App Functions ---
+    function initializeDrawingApp() {
+      canvas = document.getElementById('drawingCanvas');
+      if (!canvas) return;
+
+      ctx = canvas.getContext('2d');
+
+      function resizeCanvas() {
+        const computedStyle = getComputedStyle(canvas);
+        const parentWidth = parseFloat(computedStyle.width);
+        const parentHeight = parseFloat(computedStyle.height);
+        
+        canvas.width = parentWidth;
+        canvas.height = parentHeight;
+
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = currentLineWidth;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+      }
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      const colorSelect = document.getElementById('colorSelect');
+      const pencilSizeInput = document.getElementById('pencilSize');
+      const clearButton = document.getElementById('clearCanvas');
+
+      colorSelect.addEventListener('change', (e) => {
+        currentColor = e.target.value;
+        ctx.strokeStyle = currentColor;
+      });
+
+      pencilSizeInput.addEventListener('input', (e) => {
+        currentLineWidth = parseInt(e.target.value);
+        ctx.lineWidth = currentLineWidth;
+      });
+
+      clearButton.addEventListener('click', () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      });
+
+      function draw(e) {
+        if (!isDrawing) return;
+        
+        const rect = canvas.getBoundingClientRect();
+        let clientX, clientY;
+
+        if (e.touches && e.touches.length > 0) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+        
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        [lastX, lastY] = [x, y];
+      }
+
+      canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        const rect = canvas.getBoundingClientRect();
+        lastX = e.clientX - rect.left;
+        lastY = e.clientY - rect.top;
+      });
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mouseout', () => isDrawing = false);
+
+      canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        isDrawing = true;
+        const rect = canvas.getBoundingClientRect();
+        lastX = e.touches[0].clientX - rect.left;
+        lastY = e.touches[0].clientY - rect.top;
+      });
+      canvas.addEventListener('touchmove', draw);
+      canvas.addEventListener('touchend', () => isDrawing = false);
+      canvas.addEventListener('touchcancel', () => isDrawing = false);
+    }
+
+    // --- Brain Solver Functions ---
+    function initializeBrainSolver() {
+      const mathProblemDisplay = document.getElementById('mathProblem');
+      const mathAnswerInput = document.getElementById('mathAnswer');
+      const submitAnswerBtn = document.getElementById('submitAnswerBtn');
+      const mathFeedbackDisplay = document.getElementById('mathFeedback');
+      const newProblemBtn = document.getElementById('newProblemBtn');
+
+      function generateProblem() {
+        const operations = ['+', '-', 'x', '÷'];
+        const operation = operations[Math.floor(Math.random() * operations.length)];
+        let num1, num2, problemString = '', answer;
+
+        switch (operation) {
+          case '+':
+            num1 = Math.floor(Math.random() * 20) + 5;
+            num2 = Math.floor(Math.random() * 20) + 5;
+            problemString = `${num1} + ${num2}`;
+            answer = num1 + num2;
+            break;
+          case '-':
+            num1 = Math.floor(Math.random() * 30) + 10;
+            num2 = Math.floor(Math.random() * 10) + 1;
+            if (num1 < num2) {
+              [num1, num2] = [num2, num1];
+            }
+            problemString = `${num1} - ${num2}`;
+            answer = num1 - num2;
+            break;
+          case 'x':
+            num1 = Math.floor(Math.random() * 10) + 2;
+            num2 = Math.floor(Math.random() * 10) + 2;
+            problemString = `${num1} x ${num2}`;
+            answer = num1 * num2;
+            break;
+          case '÷':
+            num2 = Math.floor(Math.random() * 8) + 2;
+            num1 = num2 * (Math.floor(Math.random() * 10) + 2);
+            problemString = `${num1} ÷ ${num2}`;
+            answer = num1 / num2;
+            break;
+        }
+        currentProblem = { problem: problemString, answer: answer };
+        mathProblemDisplay.textContent = problemString;
+        mathAnswerInput.value = '';
+        mathFeedbackDisplay.textContent = '';
+        mathAnswerInput.focus();
+      }
+
+      function checkAnswer() {
+        const userAnswer = parseInt(mathAnswerInput.value);
+        if (isNaN(userAnswer)) {
+          mathFeedbackDisplay.textContent = 'Please enter a number!';
+          mathFeedbackDisplay.style.color = 'var(--math-feedback-color)';
+          return;
+        }
+
+        if (userAnswer === currentProblem.answer) {
+          mathFeedbackDisplay.textContent = 'Correct! 🎉';
+          mathFeedbackDisplay.style.color = '#3CB371';
+        } else {
+          mathFeedbackDisplay.textContent = `Wrong! Try again.`;
+          mathFeedbackDisplay.style.color = 'var(--math-feedback-color)';
+        }
+      }
+
+      submitAnswerBtn.addEventListener('click', checkAnswer);
+      newProblemBtn.addEventListener('click', generateProblem);
+      mathAnswerInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          checkAnswer();
+        }
+      });
+
+      generateProblem();
+    }
+
+    // --- Daily Learn Notepad Functions ---
+    function initializeDailyLearnNotepad() {
+      const dailyLearnNotes = document.getElementById('dailyLearnNotes');
+      if (!dailyLearnNotes) return;
+
+      const savedNotes = localStorage.getItem('dailyLearnNotes');
+      if (savedNotes) {
+        dailyLearnNotes.value = savedNotes;
+      }
+
+      dailyLearnNotes.addEventListener('input', () => {
+        localStorage.setItem('dailyLearnNotes', dailyLearnNotes.value);
+      });
+    }
+
+    // --- Set Goals App Functions ---
+    function initializeSetGoals() {
+      const newGoalInput = document.getElementById('newGoalInput');
+      const addGoalBtn = document.getElementById('addGoalBtn');
+      const goalsList = document.getElementById('goalsList');
+
+      function addGoal() {
+        const goalText = newGoalInput.value.trim();
+        if (goalText === '') {
+          showMessageBox('Please write your goal!');
+          return;
+        }
+
+        const goalItem = document.createElement('div');
+        goalItem.classList.add('goal-item');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.addEventListener('change', () => {
+          goalItem.classList.toggle('completed', checkbox.checked);
+        });
+
+        const span = document.createElement('span');
+        span.textContent = goalText;
+
+        goalItem.appendChild(checkbox);
+        goalItem.appendChild(span);
+        goalsList.prepend(goalItem);
+
+        newGoalInput.value = '';
+        newGoalInput.focus();
+      }
+
+      addGoalBtn.addEventListener('click', addGoal);
+      newGoalInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          addGoal();
+        }
+      });
+    }
+
+    // --- Always Smile App Functions ---
+    function initializeAlwaysSmile() {
+      const dynamicQuoteDiv = document.getElementById('dynamicQuote');
+      if (!dynamicQuoteDiv) return;
+
+      const randomIndex = Math.floor(Math.random() * happyQuotes.length);
+      dynamicQuoteDiv.textContent = happyQuotes[randomIndex];
+    }
+  </script>
+</body>
+</html>
